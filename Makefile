@@ -1,11 +1,8 @@
 install:
 	poetry install
 
-#brain-games:
-#	poetry run brain-games
-
-#brain-even:
-#	poetry run brain-even
+gendiff:
+	poetry run gendiff
 
 build:
 	poetry build
