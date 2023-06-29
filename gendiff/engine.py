@@ -2,9 +2,8 @@ import json
 
 
 def generate_diff(first, second):
-    with open(first, encoding='utf8') as file1:
+    with open(first) as file1, open(second) as file2:
         data1 = json.load(file1)
-    with open(second, encoding='utf8') as file2:
         data2 = json.load(file2)
     result = '{\n'
     for key in sorted(data1 | data2):
