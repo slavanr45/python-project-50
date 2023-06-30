@@ -3,8 +3,8 @@ import json
 
 
 def json_load(name: str) -> dict:
-    with open(name, encoding='utf8') as file1:
-        return json.load(file1)
+    with open(name, encoding='utf8') as file:
+        return json.load(file)
 
 
 def generate_diff(first: str, second: str):
