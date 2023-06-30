@@ -1,10 +1,20 @@
 import json
+# import json_diff
 
 
-def generate_diff(first, second):
-    with open(first) as file1, open(second) as file2:
-        data1 = json.load(file1)
-        data2 = json.load(file2)
+def json_load(name: str) -> dict:
+    with open(name, encoding='utf8') as file1:
+        return json.load(file1)
+
+
+def generate_diff(first: str, second: str):
+    data1 = json_load(first)
+    data2 = json_load(second)
+    result = json_diff(data1, data2)
+    return result
+
+
+def json_diff(data1: dict, data2: dict) -> str:
     result = '{\n'
     for key in sorted(data1 | data2):
         a = data1.get(key, None)
