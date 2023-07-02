@@ -11,8 +11,7 @@ path = 'tests/fixtures/'
 @pytest.fixture
 def txt():  # имя фикстуры выбирается произвольно
     with open(path + 'result.txt', encoding='utf8') as file:
-        data = file.read()
-    return data
+        return file.read()
 
 
 # unit test

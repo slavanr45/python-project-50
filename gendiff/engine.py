@@ -10,8 +10,7 @@ def json_load(name: str) -> dict:
 def generate_diff(first: str, second: str):
     data1 = json_load(first)
     data2 = json_load(second)
-    result = json_diff(data1, data2)
-    return result
+    return json_diff(data1, data2)
 
 
 def json_diff(data1: dict, data2: dict) -> str:
