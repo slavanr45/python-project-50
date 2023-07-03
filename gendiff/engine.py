@@ -1,30 +1,22 @@
-import json
-# import json_diff
+from gendiff.parsing import parse_data
 
 
-def json_load(name: str) -> dict:
-    with open(name, encoding='utf8') as file:
-        return json.load(file)
+def generate_diff(filename1: str, filename2: str):
+    data1 = parse_data(filename1)
+    data2 = parse_data(filename2)
+    return check_diff(data1, data2)
 
 
-def generate_diff(first: str, second: str):
-    data1 = json_load(first)
-    data2 = json_load(second)
-    return json_diff(data1, data2)
-
-
-def json_diff(data1: dict, data2: dict) -> str:
+def check_diff(data1: dict, data2: dict) -> str:
     result = '{\n'
     for key in sorted(data1 | data2):
         a = data1.get(key, None)
         b = data2.get(key, None)
         if a == b:
             result += f'    {key}: {data1[key]}\n'
-        elif b is None:
-            result += f'  - {key}: {data1[key]}\n'
-        elif a is None:
-            result += f'  + {key}: {data2[key]}\n'
         else:
-            result += f'  - {key}: {data1[key]}\n'
-            result += f'  + {key}: {data2[key]}\n'
+            if a is not None:
+                result += f'  - {key}: {data1[key]}\n'
+            if b is not None:
+                result += f'  + {key}: {data2[key]}\n'
     return result + '}'

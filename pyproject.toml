@@ -9,6 +9,7 @@ repository = "https://github.com/slavanr45/python-project-50"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pyyaml = "^6.0"
 
 
 [tool.poetry.group.dev.dependencies]
