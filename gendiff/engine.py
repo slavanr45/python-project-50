@@ -1,22 +1,14 @@
-from gendiff.parsing import parse_data
+from gendiff.parsing import read_data, check_diff, stylish
 
 
 def generate_diff(filename1: str, filename2: str):
-    data1 = parse_data(filename1)
-    data2 = parse_data(filename2)
-    return check_diff(data1, data2)
-
-
-def check_diff(data1: dict, data2: dict) -> str:
-    result = '{\n'
-    for key in sorted(data1 | data2):
-        a = data1.get(key, None)
-        b = data2.get(key, None)
-        if a == b:
-            result += f'    {key}: {data1[key]}\n'
-        else:
-            if a is not None:
-                result += f'  - {key}: {data1[key]}\n'
-            if b is not None:
-                result += f'  + {key}: {data2[key]}\n'
-    return result + '}'
+    data1 = read_data(filename1)
+    data2 = read_data(filename2)
+    data_prepared = check_diff(data1, data2)
+    # print(data_prepared)
+    # print(list(stylish(data_prepared)))
+    # print()
+    # path = 'tests/fixtures/'
+    # with open(path + 'result_nested.txt', encoding='utf8') as file:
+    #     print(list(file.read()))
+    return stylish(data_prepared)
