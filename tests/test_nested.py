@@ -1,5 +1,4 @@
-from gendiff.engine import generate_diff
-from gendiff.parsing import read_data
+from gendiff.engine import generate_diff, read_data
 
 
 path = 'tests/fixtures/'
