@@ -8,6 +8,7 @@ def read_data(name: str) -> dict:
             return json.load(file)
         elif name.endswith(('.yaml', '.yml')):
             return yaml.load(file, Loader=yaml.loader.SafeLoader)
+        return file.read().strip()
 
 
 # def check_diff(data1: dict, data2: dict) -> str:
@@ -43,23 +44,62 @@ def check_diff(data1: dict, data2: dict) -> dict:
     return result
 
 
-def stylish(value, n=1, sep='    '):
-    if not isinstance(value, dict):
-        match value:
+def stylish(data: dict, level=1) -> str:
+    if not isinstance(data, dict):
+        match data:  # correcting formating for keywords
             case False:
                 return 'false'
             case True:
                 return 'true'
             case None:
                 return 'null'
-        return str(value)
+        return str(data)
     result = '{\n'
-    for key, val in value.items():
-        if key.endswith('-1'):
-            result += (f'{sep * (n - 1) + "  - "}{key[:-2]}: {stylish(val, n+1)}\n')
-        elif key.endswith('-2'):
-            result += (f'{sep * (n - 1) + "  + "}{key[:-2]}: {stylish(val, n+1)}\n')
-        else:
-            result += (f'{sep * n}{key}: {stylish(val, n+1)}\n')
-    result += (sep * (n-1) + '}')
-    return result
+    for key, val in data.items():
+        result += (f'{make_indent(key, level)}: {stylish(val, level+1)}\n')
+    return result + ('    ' * (level-1) + '}')  # add tail
+
+
+def make_indent(word, n, sep='    '):
+    if word.endswith('-1'):
+        return f'{sep * (n-1)}  - {word[:-2]}'
+    elif word.endswith('-2'):
+        return f'{sep * (n-1)}  + {word[:-2]}'
+    return f'{sep * (n-1)}    {word[:]}'
+
+
+def plain(data: dict) -> str:
+    def walk(data, s=''):
+        res = []
+        pkey, pval = '', ''
+        for key, val in data.items():
+            if key.endswith('-1'):
+                res += [f'{path(s, key)} removed']
+            elif key.endswith('-2') and key[:-2] == pkey[:-2]:
+                res = res[:-1]
+                res += [f'{path(s, key)} updated. From {f(pval)} to {f(val)}']
+            elif key.endswith('-2'):
+                res += [f'{path(s, key)} added with value: {f(val)}']
+            pkey, pval = key, val
+            if isinstance(val, dict):
+                res += walk(val, f'{s}.{key}')
+        return res
+    return '\n'.join(walk(data))
+
+
+def f(data: any) -> str:
+    if isinstance(data, dict):
+        return '[complex value]'
+    match data:  # correcting formating for keywords
+        case False:
+            return 'false'
+        case True:
+            return 'true'
+        case None:
+            return 'null'
+    return f"'{data}'"
+
+
+def path(value: str, key: str) -> str:
+    format_path = f'{value}.{key[:-2]}'
+    return f"Property '{format_path[1:]}' was"
