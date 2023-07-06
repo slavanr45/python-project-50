@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 from gendiff.engine import generate_diff
-import os
-
-
-def get_path(file_name):
-    current_dir = os.path.dirname(__file__)
-    return os.path.join(current_dir, 'fixtures', file_name)
 
 
 def main():
@@ -18,8 +12,7 @@ def main():
                         default='stylish',
                         help='set format of output')
     args = parser.parse_args()
-    print(generate_diff(get_path(args.first_file),
-                        get_path(args.second_file), args.format))
+    print(generate_diff(args.first_file, args.second_file, args.format))
 
 
 if __name__ == '__main__':
