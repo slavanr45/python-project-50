@@ -20,6 +20,8 @@ def to_plain(data: dict) -> str:
 def f(data: any) -> str:
     if isinstance(data, dict):
         return '[complex value]'
+    elif isinstance(data, (int, float)):
+        return data
     match data:  # correcting formating for keywords
         case False:
             return 'false'
