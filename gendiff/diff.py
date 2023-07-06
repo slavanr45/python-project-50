@@ -10,9 +10,9 @@ def make_diff(data1: dict, data2: dict) -> dict:
                 result[key] = a
             else:
                 if a != 9999:
-                    result[key+'-1'] = a
+                    result[key + '-1'] = a
                 if b != 9999:
-                    result[key+'-2'] = b
+                    result[key + '-2'] = b
     return result
 
 # def check_diff(data1: dict, data2: dict) -> str:

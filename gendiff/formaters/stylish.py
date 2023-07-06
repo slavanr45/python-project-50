@@ -11,7 +11,7 @@ def to_stylish(data: dict, level=1) -> str:
     result = '{\n'
     for key, val in data.items():
         result += (f'{make_indent(key, level)}: {to_stylish(val, level+1)}\n')
-    return result + ('    ' * (level-1) + '}')  # add tail
+    return result + ('    ' * (level - 1) + '}')  # add tail
 
 
 def make_indent(word, n, sep='    '):
