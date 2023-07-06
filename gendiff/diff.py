@@ -1,18 +1,3 @@
-# def check_diff(data1: dict, data2: dict) -> str:
-#     result = '{\n'
-#     for key in sorted(data1 | data2):
-#         a = data1.get(key, None)
-#         b = data2.get(key, None)
-#         if a == b:
-#             result += f'    {key}: {data1[key]}\n'
-#         else:
-#             if a is not None:
-#                 result += f'  - {key}: {data1[key]}\n'
-#             if b is not None:
-#                 result += f'  + {key}: {data2[key]}\n'
-#     return result + '}'
-
-
 def make_diff(data1: dict, data2: dict) -> dict:
     result = {}
     for key in sorted(data1 | data2):
@@ -29,3 +14,17 @@ def make_diff(data1: dict, data2: dict) -> dict:
                 if b != 9999:
                     result[key+'-2'] = b
     return result
+
+# def check_diff(data1: dict, data2: dict) -> str:
+#     result = '{\n'
+#     for key in sorted(data1 | data2):
+#         a = data1.get(key, None)
+#         b = data2.get(key, None)
+#         if a == b:
+#             result += f'    {key}: {data1[key]}\n'
+#         else:
+#             if a is not None:
+#                 result += f'  - {key}: {data1[key]}\n'
+#             if b is not None:
+#                 result += f'  + {key}: {data2[key]}\n'
+#     return result + '}'

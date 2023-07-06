@@ -19,4 +19,5 @@ def make_indent(word, n, sep='    '):
         return f'{sep * (n-1)}  - {word[:-2]}'
     elif word.endswith('-2'):
         return f'{sep * (n-1)}  + {word[:-2]}'
-    return f'{sep * (n-1)}    {word[:]}'
+    else:
+        return f'{sep * (n-1)}    {word[:]}'
