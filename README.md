@@ -6,16 +6,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/56e9373832fa02434d25/test_coverage)](https://codeclimate.com/github/slavanr45/python-project-50/test_coverage)
 
 ### Asciinema:
-https://asciinema.org/a/3OhdoUOXgeJnYVRcxUZwYbP3h
-
-### Links
-
-This project was built using these tools:
-
-| Tool                                                                        | Description                                             |
-|-----------------------------------------------------------------------------|---------------------------------------------------------|
-| [poetry](https://python-poetry.org/)                                        | "Python dependency management and packaging made easy"  |
-| [Py.Test](https://pytest.org)                                               | "A mature full-featured Python testing tool"            |
-| [flake8](https://flake8.pycqa.org/)                                         | "Your tool for style guide enforcement" |
-
----
+### Gendiff between json-json, yaml-yaml, yml-yml files:
+[![asciicast](https://asciinema.org/a/QCmkLGh2Gr0GhEq1FboKohM0I.svg)](https://asciinema.org/a/QCmkLGh2Gr0GhEq1FboKohM0I)
+### also support diff between different types json-yaml files:
+[![asciicast](https://asciinema.org/a/yu1J3Fwu7jm4ODGgSH2nfh9YD.svg)](https://asciinema.org/a/yu1J3Fwu7jm4ODGgSH2nfh9YD)
