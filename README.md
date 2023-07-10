@@ -5,6 +5,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/56e9373832fa02434d25/maintainability)](https://codeclimate.com/github/slavanr45/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/56e9373832fa02434d25/test_coverage)](https://codeclimate.com/github/slavanr45/python-project-50/test_coverage)
 
+### Asciinema:
+https://asciinema.org/a/3OhdoUOXgeJnYVRcxUZwYbP3h
+
 ### Links
 
 This project was built using these tools:
